@@ -41,7 +41,7 @@ public class WalkMovementSO : PlayerControllerSO
             isDashing = false;
         }
 
-        if (inputDirection.sqrMagnitude > 0.001f)
+        if (inputDirection.sqrMagnitude > 0.01f)
         {
             playerTransform.forward = inputDirection.normalized;
         }

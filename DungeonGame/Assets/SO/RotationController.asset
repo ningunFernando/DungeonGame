@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a149febfffa91544a613358825613e3, type: 3}
   m_Name: RotationController
   m_EditorClassIdentifier: 
-  speedRotation: 120
-  duration: 3
+  speedRotation: 210
+  duration: 6
