@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
+using System.Linq.Expressions;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,16 +10,14 @@ public class PlayerController : MonoBehaviour
 
     public PlayerControllerSO currentController;
     private PlayerControllerSO lastController;
-    public PlayerControllerSO itemSlot1;
-    public PlayerControllerSO itemSlot2;
+    public PlayerControllerSO[] itemSlot = new PlayerControllerSO[2];
     public RawImage[] itemSlotImage;
     public Image[] circle;
 
 
 
 
-    private bool slot1Ready;
-    private bool slot2Ready;
+    private bool[] slotReady = new bool[2];
     
     private InputSystem_Actions inputActions;
 
@@ -63,44 +62,41 @@ public class PlayerController : MonoBehaviour
     {
         if(powerUpInUse) return;
         
-        if (slot == 1 && itemSlot1 != null && slot1Ready)
+        if (slot == 1 && itemSlot[0] != null && slotReady[0])
         {
-            Debug.Log($"Using Slot 1 Triggered Power: {itemSlot1.name}");
+            Debug.Log($"Using Slot 1 Triggered Power: {itemSlot[0].name}");
 
-            SetController(itemSlot1, rememberPrevious: true);
-            StartCoroutine(RunCircle(0, itemSlot1.duration, itemSlot1.chargeDuration));
-            slot1Ready = false;
-            powerUpInUse = true;
-            itemSlot1 = null;
+            SetController(itemSlot[0], rememberPrevious: true);
+            StartCoroutine(RunCircle(0, itemSlot[0].duration, itemSlot[0].chargeDuration));
+            powerUpInUse = true; 
         }
         
-        if (slot == 2 && itemSlot2 != null && slot2Ready)
+        if (slot == 2 && itemSlot[1] != null && slotReady[1])
         {
-            Debug.Log($"Using Slot 2 Triggered Power: {itemSlot2.name}");
-            SetController(itemSlot2, rememberPrevious: true);
-            StartCoroutine(RunCircle(1, itemSlot2.duration, itemSlot2.chargeDuration));
+            Debug.Log($"Using Slot 2 Triggered Power: {itemSlot[1].name}");
+            SetController(itemSlot[1], rememberPrevious: true);
+            StartCoroutine(RunCircle(1, itemSlot[1].duration, itemSlot[1].chargeDuration));
 
-            slot2Ready = false;
             powerUpInUse = true;
-            itemSlot2 = null;
         }
     }
 
     public void AssingController(PlayerControllerSO powerUpController)
     {
-        if (!itemSlot1)
+        if (!itemSlot[0])
         {
-            itemSlot1 = Instantiate(powerUpController);
+            itemSlot[0] = Instantiate(powerUpController);
             itemSlotImage[0].texture = Instantiate(powerUpController.image);
-            slot1Ready = true;
+            slotReady[0] = true;
+
             Debug.Log($"{powerUpController.name} has been instantiated.");
         }
-        else if (!itemSlot2)
+        else if (!itemSlot[1])
         {
-            itemSlot2 = Instantiate(powerUpController);
+            itemSlot[1] = Instantiate(powerUpController);
             itemSlotImage[1].texture = Instantiate(powerUpController.image);
 
-            slot2Ready = true;
+            slotReady[1] = true;
             Debug.Log($"{powerUpController.name} has been instantiated.");
         }
         else
@@ -134,8 +130,11 @@ public class PlayerController : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+        slotReady[slot] = false;
+        itemSlot[slot] = null;
 
         circle[slot].fillAmount = 1f;
+
         StartCoroutine(ChargeCircle(slot, chargeDuration));
 
 
@@ -147,7 +146,7 @@ public class PlayerController : MonoBehaviour
 
         while (time < duration)
         {
-            circle[0].fillAmount = 1 - (time / duration);
+            circle[slot].fillAmount = 1 - (time / duration);
             time += Time.deltaTime;
             yield return null;
         }
