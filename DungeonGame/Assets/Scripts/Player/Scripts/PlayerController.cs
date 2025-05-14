@@ -1,15 +1,22 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerControllerSO startingController;
-    
+
     public PlayerControllerSO currentController;
     private PlayerControllerSO lastController;
     public PlayerControllerSO itemSlot1;
     public PlayerControllerSO itemSlot2;
-    
+    public RawImage[] itemSlotImage;
+    public Image[] circle;
+
+
+
+
     private bool slot1Ready;
     private bool slot2Ready;
     
@@ -59,7 +66,9 @@ public class PlayerController : MonoBehaviour
         if (slot == 1 && itemSlot1 != null && slot1Ready)
         {
             Debug.Log($"Using Slot 1 Triggered Power: {itemSlot1.name}");
+
             SetController(itemSlot1, rememberPrevious: true);
+            StartCoroutine(RunCircle(0, itemSlot1.duration, itemSlot1.chargeDuration));
             slot1Ready = false;
             powerUpInUse = true;
             itemSlot1 = null;
@@ -69,6 +78,8 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log($"Using Slot 2 Triggered Power: {itemSlot2.name}");
             SetController(itemSlot2, rememberPrevious: true);
+            StartCoroutine(RunCircle(1, itemSlot2.duration, itemSlot2.chargeDuration));
+
             slot2Ready = false;
             powerUpInUse = true;
             itemSlot2 = null;
@@ -80,12 +91,15 @@ public class PlayerController : MonoBehaviour
         if (!itemSlot1)
         {
             itemSlot1 = Instantiate(powerUpController);
+            itemSlotImage[0].texture = Instantiate(powerUpController.image);
             slot1Ready = true;
             Debug.Log($"{powerUpController.name} has been instantiated.");
         }
         else if (!itemSlot2)
         {
             itemSlot2 = Instantiate(powerUpController);
+            itemSlotImage[1].texture = Instantiate(powerUpController.image);
+
             slot2Ready = true;
             Debug.Log($"{powerUpController.name} has been instantiated.");
         }
@@ -108,5 +122,38 @@ public class PlayerController : MonoBehaviour
         if (lastController)
             SetController(lastController, false);
             powerUpInUse = false;
+    }
+    public IEnumerator RunCircle(int slot, float duration, float chargeDuration)
+    {
+        float time = 0f;
+        circle[slot].fillAmount = 0f;
+
+        while (time < duration)
+        {
+            circle[slot].fillAmount = time / duration;
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        circle[slot].fillAmount = 1f;
+        StartCoroutine(ChargeCircle(slot, chargeDuration));
+
+
+    }
+    private IEnumerator ChargeCircle(int slot, float duration)
+    {
+        float time = 0f;
+        circle[slot].fillAmount = 0f;
+
+        while (time < duration)
+        {
+            circle[0].fillAmount = 1 - (time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        circle[slot].fillAmount = 0f;
+
+
     }
 }

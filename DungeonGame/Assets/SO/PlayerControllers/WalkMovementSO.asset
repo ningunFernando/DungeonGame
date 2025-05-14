@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42196fc0fa03f7a4a9e50e7527f15888, type: 3}
   m_Name: WalkMovementSO
   m_EditorClassIdentifier: 
+  image: {fileID: 10912, guid: 0000000000000000f000000000000000, type: 0}
   moveSpeed: 5
   dashSpeed: 30
   dashDuration: 0.5

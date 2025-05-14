@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992b6b803f1313c45b10d9b56b9f0ac4, type: 3}
   m_Name: TurboMovementSO
   m_EditorClassIdentifier: 
-  speed: 10
+  image: {fileID: 2800000, guid: 78fe36f00c1ee134cb6b2cb2518b28ff, type: 3}
   duration: 5
+  chargeDuration: 5
+  speed: 10

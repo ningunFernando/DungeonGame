@@ -1,13 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "RotationController", menuName = "PlayerControllers/RotationController")]
 public class RotationController : PlayerControllerSO
 {
     public float speedRotation = 90f;
-    public float duration = 10f;
+
+
     private float endTime;
     protected PlayerController playerReference;
     private float currentRotationInput;
+
 
 
     public override void Initialize(Transform playerTransform)
@@ -16,7 +19,7 @@ public class RotationController : PlayerControllerSO
         playerReference = playerTransform.GetComponent<PlayerController>();
         endTime = Time.time + duration;
     }
-
+     
     public override void HandleInput(Vector2 movementInput, bool dashInput)
     {
         currentRotationInput = movementInput.x;
@@ -34,4 +37,5 @@ public class RotationController : PlayerControllerSO
             playerReference.RevertToPreviousController();
         }
     }
+   
 }

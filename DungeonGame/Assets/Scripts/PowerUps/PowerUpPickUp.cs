@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerUpPickUp : MonoBehaviour
 { 
@@ -13,6 +14,7 @@ public class PowerUpPickUp : MonoBehaviour
         if(!player) return;
         
         player.AssingController(PowerUpToAssign);
+        
         Destroy(gameObject);
         
     }

@@ -1,10 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "TurboMovementSO", menuName = "PlayerControllers/TurboMovementSO")]
 public class TurboMovementSO : PlayerControllerSO
 {
     public float speed = 15f;
-    public float duration = 10f;
+
     private float endTime;
     protected PlayerController playerReference;
     private Vector3 inputDirection;
@@ -15,6 +16,7 @@ public class TurboMovementSO : PlayerControllerSO
         base.Initialize(playerTransform);
         playerReference = playerTransform.GetComponent<PlayerController>();
         endTime = Time.time + duration;
+
     }
 
     public override void HandleInput(Vector2 movementInput, bool dashInput)
@@ -39,5 +41,7 @@ public class TurboMovementSO : PlayerControllerSO
         {
             playerReference.RevertToPreviousController();
         }
+
     }
+    
 }
