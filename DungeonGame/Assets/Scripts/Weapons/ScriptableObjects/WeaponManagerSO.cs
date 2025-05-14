@@ -11,5 +11,5 @@ public abstract class WeaponManagerSO : ScriptableObject, IWeaponsManager
         this.weaponTransform = weaponTransform;
     }
 
-    public abstract void WeaponData(float knockback, float damage, float Speed, float ComboMax, float currentCombo, Enum type , MeshRenderer renderer, ParticleSystem particleSystem, GameObject heldTransform);
+    public abstract void WeaponData(float knockback, float damage, float Speed, float ComboMax, float currentCombo, Enum type , Mesh renderer, ParticleSystem particleSystem, GameObject heldTransform);
 }
