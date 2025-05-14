@@ -12,7 +12,6 @@ public class WalkMovementSO : PlayerControllerSO
     private bool isDashing;
     private float dashTime;
     private float lastDashTime;
-    private Vector3 dashDirection;
 
     public override void HandleInput(Vector2 movementInput, bool dashInput)
     {
@@ -23,7 +22,6 @@ public class WalkMovementSO : PlayerControllerSO
             isDashing = true;
             dashTime = Time.time + dashDuration;
             lastDashTime = Time.time;
-            dashDirection = inputDirection;
         }
     }
 
@@ -41,7 +39,7 @@ public class WalkMovementSO : PlayerControllerSO
             isDashing = false;
         }
 
-        if (inputDirection.sqrMagnitude > 0.01f)
+        if (inputDirection.sqrMagnitude > 0.001f)
         {
             playerTransform.forward = inputDirection.normalized;
         }
