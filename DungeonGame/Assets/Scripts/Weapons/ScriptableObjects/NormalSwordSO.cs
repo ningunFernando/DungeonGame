@@ -1,10 +1,8 @@
 using UnityEngine;
-using System;
 
-[CreateAssetMenu(fileName = "LongSwordSO", menuName = "Scriptable Objects/LongSwordSO")]
-public class LongSwordSO : SwordManagerSO
+[CreateAssetMenu(fileName = "NormalSwordSO", menuName = "Scriptable Objects/NormalSwordSO")]
+public class NormalSwordSO : SwordManagerSO
 {
-
     protected WeaponHandler weponHandler;
     public override void Initialize(Transform weaponTransform)
     {
@@ -12,6 +10,4 @@ public class LongSwordSO : SwordManagerSO
         weponHandler = weaponTransform.GetComponent<WeaponHandler>();
         MeshChange(weponHandler);
     }
-
-    
 }

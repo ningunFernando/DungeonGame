@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c492aefb96107c43b3af0a3bdc8fd2d, type: 3}
-  m_Name: LongSwordSO
+  m_Script: {fileID: 11500000, guid: 2433b4296c175504fbe5cb8034e9d19e, type: 3}
+  m_Name: NormalSwordSO
   m_EditorClassIdentifier: 
-  damage: 10
-  speed: 5
-  knockback: 5
-  mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
-  material: {fileID: 2100000, guid: 0606202ec06bc7c4aacc3783d5a8e870, type: 2}
+  damage: 7
+  speed: 6
+  knockback: 2
+  mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  material: {fileID: 2100000, guid: 050e26fc779cb1644bd844ac531211c9, type: 2}
