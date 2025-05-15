@@ -24,9 +24,9 @@ public class MeleeWeaponSO : WeaponSO
                 hitMask
             );
             foreach (var col in hits)
-                //col.GetComponent<Health>()?.TakeDamage(damage);
             t += Time.deltaTime;
             yield return null;
         }
+        
     }
 }

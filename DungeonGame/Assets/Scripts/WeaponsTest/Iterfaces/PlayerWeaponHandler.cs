@@ -9,6 +9,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     public WeaponSO[] weaponSlots = new WeaponSO[2];
     private IWeaponController[] controllers = new IWeaponController[2];
     private int currentSlot;
+    private bool isAttacking;
 
     [Tooltip("Reference to the Animator on your player")]
     public Animator playerAnimator;
@@ -38,7 +39,8 @@ public class PlayerWeaponHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
         {
             if (controllers[currentSlot] is WeaponSO so)
-                playerAnimator.SetTrigger(so.animationTrigger);
+                if (so.CanFire() == false) return;
+                else playerAnimator.SetTrigger(so.animationTrigger);
             controllers[currentSlot]?.Trigger();
         }
 
@@ -58,6 +60,10 @@ public class PlayerWeaponHandler : MonoBehaviour
     {
         if (idx >= 0 && idx < weaponMounts.Length)
             currentSlot = idx;
+    }
+    private IEnumerator animation()
+    {
+        yield return null;
     }
    
 }

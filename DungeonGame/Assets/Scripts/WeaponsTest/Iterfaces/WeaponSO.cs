@@ -35,5 +35,5 @@ public abstract class WeaponSO : ScriptableObject, IWeaponController
     public abstract void Trigger();
     public virtual void Tick(float deltaTime) { }
 
-    protected bool CanFire() => Time.time >= lastFireTime + cooldown;
+    public bool CanFire() => Time.time >= lastFireTime + cooldown;
 }
