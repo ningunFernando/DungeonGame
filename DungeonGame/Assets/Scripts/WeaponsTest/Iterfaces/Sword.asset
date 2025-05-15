@@ -24,4 +24,4 @@ MonoBehaviour:
     m_Bits: 4294967295
   damage: 10
   cooldown: 1
-  animationTrigger: 
+  animationTrigger: Attack

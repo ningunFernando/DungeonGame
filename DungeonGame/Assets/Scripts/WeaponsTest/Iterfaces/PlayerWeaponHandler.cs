@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerWeaponHandler : MonoBehaviour
@@ -50,4 +51,5 @@ public class PlayerWeaponHandler : MonoBehaviour
         if (idx >= 0 && idx < weaponMounts.Length)
             currentSlot = idx;
     }
+   
 }
