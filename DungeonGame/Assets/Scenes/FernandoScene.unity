@@ -7674,6 +7674,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponUsed: {fileID: 11400000, guid: c45c11e466eba094f8286be57470f360, type: 2}
+  meshRender: {fileID: 0}
+  meshMaterial: {fileID: 0}
 --- !u!1001 &1868631282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8947,6 +8949,10 @@ PrefabInstance:
     - target: {fileID: 195517280924301825, guid: 5fb1c21c1ae4170498017b025956c80d, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159880418705397863, guid: 5fb1c21c1ae4170498017b025956c80d, type: 3}
+      propertyPath: circle.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6626424444098456010, guid: 5fb1c21c1ae4170498017b025956c80d, type: 3}
       propertyPath: m_LocalPosition.x

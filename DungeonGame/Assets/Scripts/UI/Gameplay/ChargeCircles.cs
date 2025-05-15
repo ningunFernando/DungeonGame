@@ -7,9 +7,4 @@ public class ChargeCircles : MonoBehaviour
     public Image circle;
     public float durationTime = 3f;
     public float rechargeTime = 3f;
-
-
-    
-
-   
 }
