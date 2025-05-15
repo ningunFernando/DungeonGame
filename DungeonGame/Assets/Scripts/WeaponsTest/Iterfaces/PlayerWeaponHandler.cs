@@ -23,9 +23,17 @@ public class PlayerWeaponHandler : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             SwitchSlot(0);
+            print('a');
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
             SwitchSlot(1);
+            print('b');
+        }
+            
         
         if (Input.GetKeyDown(KeyCode.C))
         {
