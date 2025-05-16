@@ -7,9 +7,14 @@ public class GamePlayUI : MonoBehaviour
 {
     [SerializeField] GameObject hud;
     [SerializeField] GameObject pause;
-   
+    [SerializeField] GameObject settings;
+
 
     private bool isPaused;
+    private bool isSettings;
+
+
+
     void Start()
     {
         
@@ -32,18 +37,44 @@ public class GamePlayUI : MonoBehaviour
         }
         else
         {
-            pause.SetActive(false);
-            hud.SetActive(true);
-            Time.timeScale = 1;
-
-            isPaused = false;
+           
+                pause.SetActive(false);
+               settings.SetActive(false);
+                hud.SetActive(true);
+                Time.timeScale = 1;
+                isPaused = false;
+            isSettings = false;
+            
         }
+    }
+    public void Settings()
+    {
+        if(!isSettings)
+        {
+            settings.SetActive(true);
+            pause.SetActive(false);
+            isSettings = true;
+        }
+        else
+        {
+            settings.SetActive(false);
+            pause.SetActive(true);
+            isSettings = false;
+        }
+       
     }
      void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
+            if(isSettings)
+            {
+                Settings();
+            }else 
+            {
+                Pause();
+            }
+
         }
     }
 }

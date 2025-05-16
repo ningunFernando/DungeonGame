@@ -22413,6 +22413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resolutionsDropdown: {fileID: 1587178338}
+  fullscreenToggle: {fileID: 2099762743}
 --- !u!1001 &1629328955
 PrefabInstance:
   m_ObjectHideFlags: 0
