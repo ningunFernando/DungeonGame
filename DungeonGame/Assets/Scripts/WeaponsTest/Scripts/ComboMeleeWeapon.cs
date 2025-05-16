@@ -1,28 +1,39 @@
 // ComboMeleeWeapon.cs
 using UnityEngine;
 using System.Collections;
-using UnityEditor;
 
 [RequireComponent(typeof(Weapon))]
 public class ComboMeleeWeapon : Weapon
 {
+    [System.Serializable]
+    public struct ComboStep
+    {
+        [Tooltip("Animator Trigger parameter for this step")]
+        public string triggerName;
+
+        [Tooltip("Delay (s) from trigger → hitbox active")]
+        public float hitDelay;
+
+        [Tooltip("Duration (s) that the hitbox stays active")]
+        public float activeDuration;
+
+        [Tooltip("Knockback force applied to hit targets")]
+        public float knockbackForce;
+    }
+
     [Header("Combo Settings")]
-    [Tooltip("Animator Trigger names for each combo step")]
-    public string[] comboAnimationTriggers;
+    [Tooltip("Configure each combo step")]
+    public ComboStep[] comboSteps;
     [Tooltip("Seconds until combo resets")]
     public float comboResetTime = 1f;
 
-    [Header("Melee Settings")]
+    [Header("Hitbox Settings")]
     public Vector3 hitboxCenter = Vector3.zero;
     public Vector3 hitboxSize   = new Vector3(1,1,1);
     public LayerMask hitMask;
-    
-    public int damage = 1;
-    [Tooltip("Delay (s) from trigger → hitbox active")]
-    public float hitDelay       = 0.1f;
-    [Tooltip("How long (s) the hitbox stays active")]
-    public float activeDuration = 0.2f;
+    public int damage           = 1;
 
+    // internal state
     private Animator animator;
     private int comboIndex;
     private float lastComboTime;
@@ -30,33 +41,43 @@ public class ComboMeleeWeapon : Weapon
     public override void Initialize()
     {
         base.Initialize();
-
-        animator = GetComponentInParent<Animator>();
-        comboIndex = 0;
+        animator      = GetComponentInParent<Animator>();
+        comboIndex    = 0;
         lastComboTime = -comboResetTime;
     }
 
     protected override void OnTrigger()
     {
+        if (comboSteps == null || comboSteps.Length == 0) return;
+
         float now = Time.time;
         if (now > lastComboTime + comboResetTime)
             comboIndex = 0;
-        
+
         lastComboTime = now;
-        if (animator != null && comboAnimationTriggers.Length > 0)
-            animator.SetTrigger(comboAnimationTriggers[comboIndex]);
-        
-        StartCoroutine(PerformMelee());
-        comboIndex = (comboIndex + 1) % comboAnimationTriggers.Length;
+
+        // grab this step's data
+        var step = comboSteps[comboIndex];
+
+        // play animation
+        if (animator != null && !string.IsNullOrEmpty(step.triggerName))
+            animator.SetTrigger(step.triggerName);
+
+        // do hit/damage/knockback with this step's timing
+        StartCoroutine(PerformMelee(step));
+
+        // advance combo index
+        comboIndex = (comboIndex + 1) % comboSteps.Length;
     }
 
-    private IEnumerator PerformMelee()
+    private IEnumerator PerformMelee(ComboStep step)
     {
-        if (hitDelay > 0f)
-            yield return new WaitForSeconds(hitDelay);
+        // wait for the hit frame
+        if (step.hitDelay > 0f)
+            yield return new WaitForSeconds(step.hitDelay);
 
-        float t = 0f;
-        while (t < activeDuration)
+        float elapsed = 0f;
+        while (elapsed < step.activeDuration)
         {
             Vector3 worldCenter = transform.TransformPoint(hitboxCenter);
             Collider[] hits = Physics.OverlapBox(
@@ -68,15 +89,21 @@ public class ComboMeleeWeapon : Weapon
 
             foreach (var c in hits)
             {
-                var damageable = c.GetComponent<IDamageable>();
-                if (damageable != null)
+                // damage via IDamageable
+                if (c.TryGetComponent<IDamageable>(out var dmgable))
+                    dmgable.TakeDamage(damage);
+
+                // apply knockback if they have a Rigidbody
+                if (step.knockbackForce != 0f
+                    && c.attachedRigidbody != null)
                 {
-                    damageable.TakeDamage(damage);
+                    // direction away from the weapon
+                    Vector3 dir = (c.transform.position - transform.position).normalized;
+                    c.attachedRigidbody.AddForce(dir * step.knockbackForce, ForceMode.Impulse);
                 }
             }
-                
 
-            t += Time.deltaTime;
+            elapsed += Time.deltaTime;
             yield return null;
         }
     }

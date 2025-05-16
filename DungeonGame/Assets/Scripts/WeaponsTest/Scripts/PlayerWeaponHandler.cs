@@ -23,24 +23,9 @@ public class PlayerWeaponHandler : MonoBehaviour
     {
         inputActions = new InputSystem_Actions();
     }
-
-    private void OnEnable()
-    {
-        inputActions.Enable();
-        inputActions.Player.Attack.performed += OnAttack;
-        inputActions.Player.Jump.performed   += OnSwitchToSlot0; // map Jump → slot 0
-        inputActions.Player.Crouch.performed += OnSwitchToSlot1; // map Crouch → slot 1
-    }
-
-    private void OnDisable()
-    {
-        inputActions.Player.Attack.performed -= OnAttack;
-        inputActions.Player.Jump.performed   -= OnSwitchToSlot0;
-        inputActions.Player.Crouch.performed -= OnSwitchToSlot1;
-        inputActions.Disable();
-    }
-
+    
     private void Start()
+
     {
         // Instantiate & initialize both weapons:
         for (int i = 0; i < weaponPrefabs.Length; i++)
@@ -63,14 +48,11 @@ public class PlayerWeaponHandler : MonoBehaviour
             w?.Tick(dt);
     }
 
-    private void OnAttack(InputAction.CallbackContext ctx)
+    public void AttackCurrent()
     {
         weapons[currentIndex]?.TryTrigger();
     }
-
-    private void OnSwitchToSlot0(InputAction.CallbackContext ctx) => SwapTo(0);
-    private void OnSwitchToSlot1(InputAction.CallbackContext ctx) => SwapTo(1);
-
+    
     private void SwapTo(int idx)
     {
         if (idx == currentIndex || idx < 0 || idx >= weapons.Length) 
