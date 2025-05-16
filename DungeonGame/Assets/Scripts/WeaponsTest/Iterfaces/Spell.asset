@@ -9,19 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 375cb7d98758e4c40ad7e35f746f6b06, type: 3}
-  m_Name: Sword 1
+  m_Script: {fileID: 11500000, guid: 99923a6322f16314fb3eeebc07ea91cd, type: 3}
+  m_Name: Spell
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8015373419333982624, guid: f76c4fa82da2d164db0dea757d6310ff, type: 3}
-  holdPositionOffset: {x: -0.01, y: -0.005, z: 0}
-  holdRotationOffset: {x: 0, y: 0.3, z: 0}
-  isMelee: 1
-  hitboxActiveDuration: 2
+  prefab: {fileID: 0}
+  holdPositionOffset: {x: 0, y: 0, z: 0}
+  holdRotationOffset: {x: 0, y: 0, z: 0}
+  isMelee: 0
+  hitboxActiveDuration: 0
   hitboxCenterOffset: {x: 0, y: 0, z: 0}
   hitboxSize: {x: 0, y: 0, z: 0}
   hitMask:
     serializedVersion: 2
-    m_Bits: 4294967295
-  damage: 10
-  cooldown: 2
-  animationTrigger: Attack
+    m_Bits: 0
+  damage: 0
+  cooldown: 0
+  animationTrigger: 
+  projectileSpeed: 20
