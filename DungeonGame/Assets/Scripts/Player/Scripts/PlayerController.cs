@@ -42,12 +42,25 @@ public class PlayerController : MonoBehaviour
         inputActions.Player.Dash.canceled += ctx => dashInput = false;
 
         inputActions.Player.Jump.performed += ctx => UsePower(1);
-        inputActions.Player.Attack.performed += ctx => UsePower(2);
+        inputActions.Player.Crouch.canceled += ctx => UsePower(2);
+        
+        inputActions.Player.Attack.performed += OnAttack;
     }
 
     private void OnDisable()
     {
         inputActions.Disable();
+    }
+
+    private void OnAttack(InputAction.CallbackContext ctx)
+    {
+        if(!currentController) return;
+
+        if (currentController is ICombatController combat)
+        {
+            combat.HandleAttack();
+        }
+        
     }
     
     private void Update()
@@ -56,6 +69,7 @@ public class PlayerController : MonoBehaviour
         
         currentController.HandleInput(moveInput, dashInput);
         currentController.Tick(Time.deltaTime);
+        
     }
 
     private void UsePower(int slot)

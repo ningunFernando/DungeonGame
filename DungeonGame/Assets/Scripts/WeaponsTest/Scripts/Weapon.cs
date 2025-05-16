@@ -6,7 +6,7 @@ public abstract class Weapon : MonoBehaviour
     [Header("Basics")]
     [Tooltip("Seconds between allowed attacks/triggers")]
     public float cooldown = 1f;
-    protected float lastTriggerTime;
+    protected float lastTriggerTime;    
 
     /// <summary>Call once after Instantiate</summary>
     public virtual void Initialize()
