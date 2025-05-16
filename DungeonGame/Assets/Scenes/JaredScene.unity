@@ -8748,11 +8748,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ac8334c90265dcf43bc399825d06f86b, type: 3}
   m_PrefabInstance: {fileID: 1386337701}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &2081710011 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: ac8334c90265dcf43bc399825d06f86b, type: 3}
-  m_PrefabInstance: {fileID: 1386337701}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2081710013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8762,16 +8757,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2081710010}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d5ea63108322fa48a6f480fb311338b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0944bb22319e66343ae6983ddd58e7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponMounts:
-  - {fileID: 1238783967}
-  - {fileID: 81271322}
-  weaponSlots:
-  - {fileID: 11400000, guid: 919baec0e6d5ecc45ac8a17582ffd5c3, type: 2}
-  - {fileID: 11400000, guid: f1fabe8b79d5ba44d84410bcfb3a6ce5, type: 2}
-  playerAnimator: {fileID: 2081710011}
+  handMount: {fileID: 1238783967}
+  backMount: {fileID: 81271322}
+  weaponPrefabs:
+  - {fileID: 8015373419333982624, guid: f76c4fa82da2d164db0dea757d6310ff, type: 3}
+  - {fileID: 8015373419333982624, guid: 95800b63ed0f7ec4da272997ba2c6a08, type: 3}
 --- !u!1001 &2087217348
 PrefabInstance:
   m_ObjectHideFlags: 0
