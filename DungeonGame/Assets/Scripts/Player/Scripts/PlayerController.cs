@@ -11,12 +11,11 @@ public class PlayerController : MonoBehaviour
     public PlayerControllerSO currentController;
     private PlayerControllerSO lastController;
     public PlayerControllerSO[] itemSlot = new PlayerControllerSO[2];
+    
     public RawImage[] itemSlotImage;
     public Image[] circle;
 
-
-
-
+    
     private bool[] slotReady = new bool[2];
     
     private InputSystem_Actions inputActions;
