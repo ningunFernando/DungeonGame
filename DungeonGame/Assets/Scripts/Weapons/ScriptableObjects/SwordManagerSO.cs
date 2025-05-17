@@ -9,9 +9,10 @@ public class SwordManagerSO : WeaponManagerSO
     public float knockback = 5f;
     public Mesh mesh;
     public Material material;
+
     //public ParticleSystem particleSystem;
 
-    public override void WeaponData(float knockback, float damage, float Speed, float ComboMax, float currentCombo, Enum Type, Mesh renderer, ParticleSystem particleSystem, GameObject heldTransform)
+    public override void WeaponData(float knockback, float damage, float Speed, Texture image, float ComboMax, float currentCombo, Enum Type, Mesh renderer, ParticleSystem particleSystem, GameObject heldTransform)
     {
         throw new NotImplementedException();
     }

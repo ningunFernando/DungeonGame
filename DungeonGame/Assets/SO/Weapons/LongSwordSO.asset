@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c492aefb96107c43b3af0a3bdc8fd2d, type: 3}
   m_Name: LongSwordSO
   m_EditorClassIdentifier: 
+  image: {fileID: 2800000, guid: e83f829376512844495f9b817a53da1f, type: 3}
   damage: 10
   speed: 5
   knockback: 5

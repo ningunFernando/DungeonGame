@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2433b4296c175504fbe5cb8034e9d19e, type: 3}
   m_Name: NormalSwordSO
   m_EditorClassIdentifier: 
+  image: {fileID: 2800000, guid: 8185f3757a8a496458bf5b9e2b48ccf8, type: 3}
   damage: 7
   speed: 6
   knockback: 2

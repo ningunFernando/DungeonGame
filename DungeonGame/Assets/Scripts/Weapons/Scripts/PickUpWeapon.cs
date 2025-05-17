@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PickUpWeapon : MonoBehaviour
 {
     [SerializeField] private WeaponManagerSO weaponPcik;
+
 
     private void OnTriggerEnter(Collider other)
     {

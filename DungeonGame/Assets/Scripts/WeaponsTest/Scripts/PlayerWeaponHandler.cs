@@ -1,6 +1,7 @@
 // PlayerWeaponHandler.cs
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerWeaponHandler : MonoBehaviour
 {
@@ -16,8 +17,9 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     private Weapon[] weapons = new Weapon[2];
     private int currentIndex = 0;
-
     private InputSystem_Actions inputActions;
+    [SerializeField] RawImage[] weaponImage;
+
 
     private void Awake()
     {
@@ -37,6 +39,7 @@ public class PlayerWeaponHandler : MonoBehaviour
 
             weapons[i] = go.GetComponent<Weapon>();
             weapons[i]?.Initialize();
+            
         }
     }
 
