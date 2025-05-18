@@ -39,6 +39,7 @@ public class PlayerWeaponHandler : MonoBehaviour
 
             weapons[i] = go.GetComponent<Weapon>();
             weapons[i]?.Initialize();
+            weaponImage[i].texture = weapons[i].image;
             
         }
     }

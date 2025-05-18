@@ -262,6 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1.8
+  image: {fileID: 2800000, guid: e83f829376512844495f9b817a53da1f, type: 3}
   comboSteps:
   - triggerName: Attack
     hitDelay: 0.3
