@@ -16,9 +16,12 @@ public class PlayerWeaponHandler : MonoBehaviour
     public GameObject[] weaponPrefabs = new GameObject[2];
 
     private Weapon[] weapons = new Weapon[2];
-    private int currentIndex = 0;
+    public int currentIndex = 0;
     private InputSystem_Actions inputActions;
     [SerializeField] RawImage[] weaponImage;
+    [SerializeField] Transform[] weaponImageTransform;
+    private Color[] imageColor = new Color[2];
+
 
 
     private void Awake()
@@ -29,6 +32,11 @@ public class PlayerWeaponHandler : MonoBehaviour
     private void Start()
 
     {
+        imageColor[0] = Color.white;
+        imageColor[1] = Color.white;    
+        imageColor[0].a = .5f;
+        imageColor[1].a = 1;
+
         // Instantiate & initialize both weapons:
         for (int i = 0; i < weaponPrefabs.Length; i++)
         {
@@ -50,25 +58,48 @@ public class PlayerWeaponHandler : MonoBehaviour
         float dt = Time.deltaTime;
         foreach (var w in weapons)
             w?.Tick(dt);
+        if (Input.GetKeyDown(KeyCode.P)) // Tecla W presionada (continua).
+        {
+            if(currentIndex == 0)
+            {
+                SwapTo(1);
+
+            }
+            else
+            {
+                SwapTo(0);
+            }
+        }
     }
 
     public void AttackCurrent()
     {
         weapons[currentIndex]?.TryTrigger();
     }
-    
+
     private void SwapTo(int idx)
     {
-        if (idx == currentIndex || idx < 0 || idx >= weapons.Length) 
+        if (idx == currentIndex || idx < 0 || idx >= weapons.Length)
             return;
+        int nidx = currentIndex;
 
-        // Stow current
+        // Stow current weapon
         var prev = weapons[currentIndex].transform;
         prev.SetParent(backMount, worldPositionStays: false);
-        prev.localPosition  = Vector3.zero;
-        prev.localRotation  = Quaternion.identity;
+        prev.localPosition = Vector3.zero;
+        prev.localRotation = Quaternion.identity;
 
-        // Draw new
+        weaponImage[nidx].transform.SetAsFirstSibling();
+       
+        weaponImage[nidx].color = imageColor[0];
+       
+        weaponImage[idx].color = imageColor[1];
+
+
+        weaponImage[idx].transform.position = weaponImageTransform[0].position; 
+        weaponImage[nidx].transform.position = weaponImageTransform[1].position; 
+
+        // Draw new weapon
         currentIndex = idx;
         var now = weapons[currentIndex].transform;
         now.SetParent(handMount, worldPositionStays: false);
