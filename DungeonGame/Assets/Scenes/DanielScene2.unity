@@ -3731,8 +3731,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 70, y: 70}
+  m_AnchoredPosition: {x: -0.13723, y: -0.0000035523}
+  m_SizeDelta: {x: 59.2452, y: 57.4154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &331211015
 MonoBehaviour:
@@ -30073,6 +30073,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 194f7ad106c244ecb936f7d96fe96aa5, type: 3}
+--- !u!1001 &2023887299
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3373880919328321466, guid: 95800b63ed0f7ec4da272997ba2c6a08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.817152
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373880919328321466, guid: 95800b63ed0f7ec4da272997ba2c6a08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373880919328321466, guid: 95800b63ed0f7ec4da272997ba2c6a08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.407406
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373880919328321466, guid: 95800b63ed0f7ec4da272997ba2c6a08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373880919328321466, guid: 95800b63ed0f7ec4da272997ba2c6a08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373880919328321466, guid: 95800b63ed0f7ec4da272997ba2c6a08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373880919328321466, guid: 95800b63ed0f7ec4da272997ba2c6a08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373880919328321466, guid: 95800b63ed0f7ec4da272997ba2c6a08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373880919328321466, guid: 95800b63ed0f7ec4da272997ba2c6a08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3373880919328321466, guid: 95800b63ed0f7ec4da272997ba2c6a08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015373419333982624, guid: 95800b63ed0f7ec4da272997ba2c6a08, type: 3}
+      propertyPath: m_Name
+      value: Sworld
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 95800b63ed0f7ec4da272997ba2c6a08, type: 3}
 --- !u!1 &2031712657
 GameObject:
   m_ObjectHideFlags: 0
@@ -30768,8 +30825,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 70, y: 70}
+  m_AnchoredPosition: {x: -0.000025749, y: -0.0000019073}
+  m_SizeDelta: {x: 58.0478, y: 58.6012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2054703197
 MonoBehaviour:
@@ -32606,6 +32663,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1395834781}
     - target: {fileID: 9204209159429498752, guid: 360927b85dd77fc42b18e8cc097d5eea, type: 3}
+      propertyPath: 'weaponPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8015373419333982624, guid: f76c4fa82da2d164db0dea757d6310ff, type: 3}
+    - target: {fileID: 9204209159429498752, guid: 360927b85dd77fc42b18e8cc097d5eea, type: 3}
+      propertyPath: 'weaponPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8392561738266294376, guid: b65ba5b10bf33d74c98bb5312bcd9b74, type: 3}
+    - target: {fileID: 9204209159429498752, guid: 360927b85dd77fc42b18e8cc097d5eea, type: 3}
       propertyPath: weaponImageTransform.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -32786,3 +32851,4 @@ SceneRoots:
   - {fileID: 777037931}
   - {fileID: 89863204}
   - {fileID: 126840462}
+  - {fileID: 2023887299}
