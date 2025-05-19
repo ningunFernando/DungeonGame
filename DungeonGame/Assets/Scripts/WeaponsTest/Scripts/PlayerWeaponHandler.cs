@@ -17,12 +17,12 @@ public class PlayerWeaponHandler : MonoBehaviour
     public GameObject[] weaponPrefabs = new GameObject[2];
 
     private Weapon[] weapons = new Weapon[2];
-    public int currentIndex = 0;
+    private int currentIndex = 0;
     private InputSystem_Actions inputActions;
     [SerializeField] RawImage[] weaponImage;
     [SerializeField] Transform[] weaponImageTransform;
     private Color[] imageColor = new Color[2];
-    [SerializeField] PlayerInput playerInput;
+    [SerializeField] PlayerInput playerInput; 
 
 
     private void Awake()
@@ -55,11 +55,15 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     private void Update()
     {
+        print(weapons[currentIndex].isAttacking);
+       
         // Tick each weapon for combo timing, cooldown UI, etc.
         float dt = Time.deltaTime;
         foreach (var w in weapons)
+
             w?.Tick(dt);
-        if (playerInput.actions["Change"].WasPressedThisFrame())
+        
+        if (playerInput.actions["Change"].WasPressedThisFrame() && !weapons[currentIndex].isAttacking)
         {
             if (currentIndex == 0)
             {

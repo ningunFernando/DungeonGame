@@ -17,7 +17,8 @@ public class MeleeWeapon : Weapon
     }
     private IEnumerator DoMelee()
     {
-        if(hitDelay > 0f) yield return new WaitForSeconds(hitDelay);
+
+        if (hitDelay > 0f) yield return new WaitForSeconds(hitDelay);
 
         float t = 0f;
         while (t < activeDuration)

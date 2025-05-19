@@ -38,6 +38,7 @@ public class ComboMeleeWeapon : Weapon
     private int comboIndex;
     private float lastComboTime;
 
+
     public override void Initialize()
     {
         base.Initialize();
@@ -49,7 +50,6 @@ public class ComboMeleeWeapon : Weapon
     protected override void OnTrigger()
     {
         if (comboSteps == null || comboSteps.Length == 0) return;
-
         float now = Time.time;
         if (now > lastComboTime + comboResetTime)
             comboIndex = 0;
@@ -64,7 +64,12 @@ public class ComboMeleeWeapon : Weapon
             animator.SetTrigger(step.triggerName);
 
         // do hit/damage/knockback with this step's timing
+        isAttacking = true;
+        StopAllCoroutines();
         StartCoroutine(PerformMelee(step));
+        StartCoroutine(StopAtacking());
+
+
 
         // advance combo index
         comboIndex = (comboIndex + 1) % comboSteps.Length;
@@ -106,6 +111,12 @@ public class ComboMeleeWeapon : Weapon
             elapsed += Time.deltaTime;
             yield return null;
         }
+    }
+    private IEnumerator StopAtacking( )
+    {
+        yield return new WaitForSeconds(2.4f);
+        isAttacking = false;
+
     }
 
     private void OnDrawGizmosSelected()

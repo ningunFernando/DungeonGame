@@ -6,6 +6,7 @@ public abstract class Weapon : MonoBehaviour
     [Header("Basics")]
     [Tooltip("Seconds between allowed attacks/triggers")]
     public float cooldown = 1f;
+    public bool isAttacking;
     protected float lastTriggerTime;
     public Texture image;
 
