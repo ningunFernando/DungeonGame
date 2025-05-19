@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+
 public class PlayerWeaponHandler : MonoBehaviour
 {
     [Header("Mounts")]
@@ -21,7 +22,7 @@ public class PlayerWeaponHandler : MonoBehaviour
     [SerializeField] RawImage[] weaponImage;
     [SerializeField] Transform[] weaponImageTransform;
     private Color[] imageColor = new Color[2];
-
+    [SerializeField] PlayerInput playerInput;
 
 
     private void Awake()
@@ -58,9 +59,9 @@ public class PlayerWeaponHandler : MonoBehaviour
         float dt = Time.deltaTime;
         foreach (var w in weapons)
             w?.Tick(dt);
-        if (Input.GetKeyDown(KeyCode.P)) // Tecla W presionada (continua).
+        if (playerInput.actions["Change"].WasPressedThisFrame())
         {
-            if(currentIndex == 0)
+            if (currentIndex == 0)
             {
                 SwapTo(1);
 
