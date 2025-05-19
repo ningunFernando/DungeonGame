@@ -55,7 +55,6 @@ public class PlayerWeaponHandler : MonoBehaviour
 
     private void Update()
     {
-        print(weapons[currentIndex].isAttacking);
        
         // Tick each weapon for combo timing, cooldown UI, etc.
         float dt = Time.deltaTime;

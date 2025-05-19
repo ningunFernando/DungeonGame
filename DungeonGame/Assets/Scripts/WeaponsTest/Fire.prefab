@@ -154,7 +154,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
+  isAttacking: 0
   image: {fileID: 2800000, guid: 78fe36f00c1ee134cb6b2cb2518b28ff, type: 3}
   projectilePrefab: {fileID: 8141410936327941367, guid: aea976ea01be11a478d2d08a543e9587, type: 3}
-  projectileVelocity: 1
+  projectileVelocity: 50
   projectileSpawnPoint: {fileID: 2331903053462994476}
