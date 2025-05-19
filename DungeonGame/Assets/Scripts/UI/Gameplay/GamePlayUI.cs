@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 
@@ -8,6 +10,9 @@ public class GamePlayUI : MonoBehaviour
     [SerializeField] GameObject hud;
     [SerializeField] GameObject pause;
     [SerializeField] GameObject settings;
+    [SerializeField] PlayerInput playerInput;
+    [SerializeField]  GameObject mainFirstSelected;
+    [SerializeField]  GameObject settingsFirstSelected;
 
 
     private bool isPaused;
@@ -34,6 +39,8 @@ public class GamePlayUI : MonoBehaviour
             hud.SetActive(false);
             Time.timeScale = 0;
             isPaused = true;
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(mainFirstSelected);
         }
         else
         {
@@ -54,18 +61,22 @@ public class GamePlayUI : MonoBehaviour
             settings.SetActive(true);
             pause.SetActive(false);
             isSettings = true;
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(settingsFirstSelected);
         }
         else
         {
             settings.SetActive(false);
             pause.SetActive(true);
             isSettings = false;
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(mainFirstSelected);
         }
        
     }
      void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (playerInput.actions["Pause"].WasPressedThisFrame())
         {
             if(isSettings)
             {
